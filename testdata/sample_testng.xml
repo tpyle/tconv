@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results total="4" passed="2" failed="1" skipped="1">
+  <suite name="TestSuite" duration-ms="2340" started-at="2023-01-01T10:00:00Z" finished-at="2023-01-01T10:00:02Z">
+    <groups>
+      <group name="unit">
+        <method signature="TestClass.testAddition()" name="testAddition" class="TestClass"/>
+        <method signature="TestClass.testSubtraction()" name="testSubtraction" class="TestClass"/>
+      </group>
+    </groups>
+    <test name="MathTests" duration-ms="2340" started-at="2023-01-01T10:00:00Z" finished-at="2023-01-01T10:00:02Z">
+      <class name="TestClass">
+        <test-method signature="TestClass.testAddition()" name="testAddition" class-name="TestClass" groups="unit" description="Test basic addition" duration-ms="150" started-at="2023-01-01T10:00:00Z" finished-at="2023-01-01T10:00:00Z" status="PASS">
+          <reporter-output>Addition test passed successfully</reporter-output>
+        </test-method>
+        <test-method signature="TestClass.testSubtraction()" name="testSubtraction" class-name="TestClass" groups="unit" description="Test basic subtraction" duration-ms="200" started-at="2023-01-01T10:00:00Z" finished-at="2023-01-01T10:00:00Z" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>Expected 5 but was 4</message>
+            <full-stacktrace>java.lang.AssertionError: Expected 5 but was 4
+	at TestClass.testSubtraction(TestClass.java:35)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)</full-stacktrace>
+          </exception>
+        </test-method>
+        <test-method signature="TestClass.testMultiplication()" name="testMultiplication" class-name="TestClass" groups="unit" description="Test basic multiplication" duration-ms="100" started-at="2023-01-01T10:00:01Z" finished-at="2023-01-01T10:00:01Z" status="PASS">
+          <params>
+            <param index="0">
+              <value>3</value>
+            </param>
+            <param index="1">
+              <value>4</value>
+            </param>
+          </params>
+        </test-method>
+        <test-method signature="TestClass.testDivision()" name="testDivision" class-name="TestClass" groups="unit" description="Test basic division" duration-ms="0" started-at="2023-01-01T10:00:01Z" finished-at="2023-01-01T10:00:01Z" status="SKIP">
+          <reporter-output>Division test skipped - feature not implemented</reporter-output>
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assemblies timestamp="2023-01-01T10:00:00.0000000Z">
+  <assembly name="TestAssembly" environment="64-bit .NET 6.0.0" test-framework="xUnit.net 2.4.1" run-date="2023-01-01" run-time="10:00:00" config-file="/path/to/config" time="0.456" total="4" passed="2" failed="1" skipped="1" errors="0">
+    <collection name="TestCollection" time="0.456" total="4" passed="2" failed="1" skipped="1">
+      <test name="TestClass.TestSuccess" type="TestClass" method="TestSuccess" time="0.100" result="Pass">
+        <output>Test output from TestSuccess</output>
+      </test>
+      <test name="TestClass.TestFailure" type="TestClass" method="TestFailure" time="0.150" result="Fail">
+        <failure exception-type="Xunit.Sdk.XunitException">
+          <message>Expected: 5, Actual: 4</message>
+          <stack-trace>   at TestClass.TestFailure() in TestClass.cs:line 25</stack-trace>
+        </failure>
+      </test>
+      <test name="TestClass.TestSkipped" type="TestClass" method="TestSkipped" time="0.000" result="Skip">
+        <reason>Test disabled for maintenance</reason>
+        <traits>
+          <trait name="Category" value="Integration"/>
+          <trait name="Priority" value="Low"/>
+        </traits>
+      </test>
+      <test name="TestClass.TestWithTraits" type="TestClass" method="TestWithTraits" time="0.206" result="Pass">
+        <traits>
+          <trait name="Category" value="Unit"/>
+          <trait name="Priority" value="High"/>
+        </traits>
+      </test>
+    </collection>
+  </assembly>
+</assemblies>

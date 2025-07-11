@@ -1,0 +1,10 @@
+TAP version 13
+1..4
+ok 1 - Basic addition test
+not ok 2 - Subtraction test
+# Expected: 5
+# Actual: 3
+ok 3 - Multiplication test # SKIP Not implemented yet
+not ok 4 - Division test # TODO Fix division by zero handling
+# This test fails because division by zero is not handled
+# Need to implement proper error checking

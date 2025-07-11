@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="AllTests" tests="4" failures="1" errors="1" time="0.45">
+  <testsuite name="TestSuite1" package="com.example.tests" tests="4" failures="1" errors="1" skipped="0" time="0.45" timestamp="2023-01-01T10:00:00">
+    <properties>
+      <property name="java.version" value="11.0.1"/>
+      <property name="os.name" value="Linux"/>
+    </properties>
+    <testcase name="testSuccess" classname="com.example.tests.TestClass" time="0.1">
+    </testcase>
+    <testcase name="testFailure" classname="com.example.tests.TestClass" time="0.15">
+      <failure message="Expected 5 but was 4" type="AssertionError">
+        Expected: 5
+        Actual: 4
+        at TestClass.testFailure(TestClass.java:15)
+      </failure>
+    </testcase>
+    <testcase name="testError" classname="com.example.tests.TestClass" time="0.05">
+      <error message="Null pointer exception" type="NullPointerException">
+        java.lang.NullPointerException
+        at TestClass.testError(TestClass.java:25)
+      </error>
+    </testcase>
+    <testcase name="testSkipped" classname="com.example.tests.TestClass" time="0.15">
+      <skipped message="Test disabled"/>
+    </testcase>
+    <system-out>Standard output content</system-out>
+    <system-err>Standard error content</system-err>
+  </testsuite>
+</testsuites>

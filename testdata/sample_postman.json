@@ -1,0 +1,133 @@
+{
+  "info": {
+    "postman_id": "test-collection-id",
+    "name": "Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "run": {
+    "stats": {
+      "iterations": {"total": 1, "pending": 0, "failed": 0},
+      "items": {"total": 3, "pending": 0, "failed": 1},
+      "scripts": {"total": 6, "pending": 0, "failed": 0},
+      "prerequests": {"total": 0, "pending": 0, "failed": 0},
+      "requests": {"total": 3, "pending": 0, "failed": 0},
+      "tests": {"total": 4, "pending": 0, "failed": 1},
+      "assertions": {"total": 4, "pending": 0, "failed": 1},
+      "testScripts": {"total": 3, "pending": 0, "failed": 0}
+    },
+    "timings": {
+      "responseAverage": 150.5,
+      "responseMin": 100,
+      "responseMax": 200,
+      "responseSd": 45.2,
+      "dnsAverage": 5.2,
+      "dnsMin": 3.1,
+      "dnsMax": 8.5,
+      "dnsSd": 2.1,
+      "firstByteAverage": 125.3,
+      "firstByteMin": 95.2,
+      "firstByteMax": 180.1,
+      "firstByteSd": 38.7,
+      "started": 1672574400000,
+      "completed": 1672574460000
+    },
+    "executions": [
+      {
+        "item": {
+          "id": "request-1",
+          "name": "Get Users"
+        },
+        "request": {
+          "method": "GET",
+          "url": {
+            "raw": "https://api.example.com/users",
+            "protocol": "https",
+            "host": ["api", "example", "com"],
+            "path": ["users"]
+          },
+          "header": [
+            {"key": "Authorization", "value": "Bearer token123"}
+          ]
+        },
+        "response": {
+          "id": "response-1",
+          "originalRequest": {
+            "method": "GET",
+            "url": {
+              "raw": "https://api.example.com/users",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users"]
+            },
+            "header": [
+              {"key": "Authorization", "value": "Bearer token123"}
+            ]
+          },
+          "responseTime": 150,
+          "timings": {"lookup": 5, "connect": 15, "secureConnect": 25, "transfer": 105},
+          "header": [
+            {"key": "Content-Type", "value": "application/json"}
+          ],
+          "cookie": [],
+          "body": "{\"users\": [{\"id\": 1, \"name\": \"John\"}]}",
+          "status": "OK",
+          "code": 200
+        },
+        "assertions": [
+          {"assertion": "Status code is 200"},
+          {"assertion": "Response has users array"}
+        ]
+      },
+      {
+        "item": {
+          "id": "request-2",
+          "name": "Create User"
+        },
+        "request": {
+          "method": "POST",
+          "url": {
+            "raw": "https://api.example.com/users",
+            "protocol": "https",
+            "host": ["api", "example", "com"],
+            "path": ["users"]
+          },
+          "header": [
+            {"key": "Content-Type", "value": "application/json"}
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"name\": \"Jane Doe\"}"
+          }
+        },
+        "response": {
+          "id": "response-2",
+          "originalRequest": {
+            "method": "POST",
+            "url": {
+              "raw": "https://api.example.com/users",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users"]
+            },
+            "header": [
+              {"key": "Content-Type", "value": "application/json"}
+            ]
+          },
+          "responseTime": 200,
+          "timings": {"lookup": 3, "connect": 12, "secureConnect": 20, "transfer": 165},
+          "header": [
+            {"key": "Content-Type", "value": "application/json"}
+          ],
+          "cookie": [],
+          "body": "{\"id\": 2, \"name\": \"Jane Doe\"}",
+          "status": "Created",
+          "code": 201
+        },
+        "assertions": [
+          {"assertion": "Status code is 201"},
+          {"assertion": "Response has user id", "error": {"message": "Expected user id to be present"}}
+        ]
+      }
+    ]
+  }
+}
