@@ -11,7 +11,7 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
-func ParseXUnit(filePath string) (*models.UnifiedTestResult, error) {
+func ParseXUnit(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file: %w", err)
@@ -32,7 +32,7 @@ func ParseXUnit(filePath string) (*models.UnifiedTestResult, error) {
 		assemblies.Assemblies = []models.XUnitAssembly{assembly}
 	}
 
-	result := &models.UnifiedTestResult{
+	result := &models.TikiTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "xunit",
 			Timestamp: time.Now(),

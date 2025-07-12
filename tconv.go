@@ -109,7 +109,7 @@ func SupportedFormats() []Format {
 //   - outputFile: Path where the converted file will be written
 //
 // Returns an error if the export fails.
-func Export(result *models.UnifiedTestResult, format, outputFile string) error {
+func Export(result *models.TikiTestResult, format, outputFile string) error {
 	manager := exporters.NewExportManager()
 	return manager.Export(result, format, outputFile)
 }
@@ -124,7 +124,7 @@ func Export(result *models.UnifiedTestResult, format, outputFile string) error {
 //   - writer: Writer where the converted content will be written
 //
 // Returns an error if the export fails.
-func ExportToWriter(result *models.UnifiedTestResult, format string, writer io.Writer) error {
+func ExportToWriter(result *models.TikiTestResult, format string, writer io.Writer) error {
 	manager := exporters.NewExportManager()
 	return manager.Write(result, format, writer)
 }
@@ -142,8 +142,14 @@ func SupportedExportFormats() []string {
 // Parameters:
 //   - inputFile: Path to the tiki JSON file
 //
-// Returns the loaded UnifiedTestResult or an error if loading fails.
-func LoadTiki(inputFile string) (*models.UnifiedTestResult, error) {
+// Returns the loaded TikiTestResult or an error if loading fails.
+func LoadTiki(inputFile string) (*models.TikiTestResult, error) {
 	conv := converter.New()
 	return conv.LoadTiki(inputFile)
+}
+
+// LoadUnified is deprecated. Use LoadTiki instead.
+// Returns the loaded TikiTestResult or an error if loading fails.
+func LoadUnified(inputFile string) (*models.TikiTestResult, error) {
+	return LoadTiki(inputFile)
 }

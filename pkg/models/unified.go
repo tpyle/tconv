@@ -9,12 +9,12 @@ import (
 	"time"
 )
 
-// UnifiedTestResult represents the standardized tiki test result format that all
+// TikiTestResult represents the standardized tiki test result format that all
 // parsers convert to. This is the primary export type for library consumers.
 //
 // The structure is designed to accommodate test results from various testing
 // frameworks while providing a consistent interface for consumers.
-type UnifiedTestResult struct {
+type TikiTestResult struct {
 	// Metadata contains information about the test run source and environment
 	Metadata TestMetadata `json:"metadata" yaml:"metadata" xml:"metadata"`
 
@@ -182,9 +182,9 @@ func (ts *TestSummary) PassRate() float64 {
 	return float64(ts.Passed) / float64(ts.Total) * 100.0
 }
 
-// CombineResults combines multiple UnifiedTestResult instances into a single result.
+// CombineResults combines multiple TikiTestResult instances into a single result.
 // This is the backward-compatible API for result combination.
-func CombineResults(results []*UnifiedTestResult, combinedSource string) *UnifiedTestResult {
+func CombineResults(results []*TikiTestResult, combinedSource string) *TikiTestResult {
 	if len(results) == 0 {
 		return nil
 	}
@@ -193,7 +193,7 @@ func CombineResults(results []*UnifiedTestResult, combinedSource string) *Unifie
 		return results[0]
 	}
 
-	combined := &UnifiedTestResult{
+	combined := &TikiTestResult{
 		Metadata: TestMetadata{
 			Source:      combinedSource,
 			Timestamp:   time.Now(),
@@ -259,3 +259,7 @@ func CombineResults(results []*UnifiedTestResult, combinedSource string) *Unifie
 
 	return combined
 }
+
+// UnifiedTestResult is a deprecated alias for TikiTestResult.
+// Use TikiTestResult instead.
+type UnifiedTestResult = TikiTestResult

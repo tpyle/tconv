@@ -12,7 +12,7 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
-func ParsePytest(filePath string) (*models.UnifiedTestResult, error) {
+func ParsePytest(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file: %w", err)
@@ -29,7 +29,7 @@ func ParsePytest(filePath string) (*models.UnifiedTestResult, error) {
 		return nil, fmt.Errorf("failed to unmarshal JSON: %w", err)
 	}
 
-	result := &models.UnifiedTestResult{
+	result := &models.TikiTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "pytest",
 			Timestamp: time.Now(),

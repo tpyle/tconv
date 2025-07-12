@@ -21,7 +21,7 @@ var (
 	tapDiagRegex    = regexp.MustCompile(`^#\s*(.*)`)
 )
 
-func ParseTAP(filePath string) (*models.UnifiedTestResult, error) {
+func ParseTAP(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file: %w", err)
@@ -167,8 +167,8 @@ func parseTAPContent(reader io.Reader) (*models.TAPResult, error) {
 	return result, nil
 }
 
-func convertTAPToUnified(tapResult *models.TAPResult) *models.UnifiedTestResult {
-	result := &models.UnifiedTestResult{
+func convertTAPToUnified(tapResult *models.TAPResult) *models.TikiTestResult {
+	result := &models.TikiTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "tap",
 			Timestamp: time.Now(),

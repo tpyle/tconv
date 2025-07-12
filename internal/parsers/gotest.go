@@ -11,14 +11,14 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
-func ParseGoTest(filePath string) (*models.UnifiedTestResult, error) {
+func ParseGoTest(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file: %w", err)
 	}
 	defer file.Close()
 
-	result := &models.UnifiedTestResult{
+	result := &models.TikiTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "gotest",
 			Timestamp: time.Now(),

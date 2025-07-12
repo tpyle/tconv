@@ -11,7 +11,7 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
-func ParseJUnit(filePath string) (*models.UnifiedTestResult, error) {
+func ParseJUnit(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file: %w", err)
@@ -32,7 +32,7 @@ func ParseJUnit(filePath string) (*models.UnifiedTestResult, error) {
 		testSuites.TestSuites = []models.JUnitTestSuite{testSuite}
 	}
 
-	result := &models.UnifiedTestResult{
+	result := &models.TikiTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "junit",
 			Timestamp: time.Now(),

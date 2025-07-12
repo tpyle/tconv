@@ -73,7 +73,7 @@ type JUnitSkipped struct {
 }
 
 // ExportJUnit converts a TikiTestResult to JUnit XML format
-func ExportJUnit(result *models.UnifiedTestResult, outputPath string) error {
+func ExportJUnit(result *models.TikiTestResult, outputPath string) error {
 	file, err := os.Create(outputPath)
 	if err != nil {
 		return fmt.Errorf("failed to create output file: %w", err)
@@ -84,7 +84,7 @@ func ExportJUnit(result *models.UnifiedTestResult, outputPath string) error {
 }
 
 // WriteJUnit writes a TikiTestResult as JUnit XML to the provided writer
-func WriteJUnit(result *models.UnifiedTestResult, writer io.Writer) error {
+func WriteJUnit(result *models.TikiTestResult, writer io.Writer) error {
 	junitSuites := convertToJUnit(result)
 
 	// Write XML header
@@ -104,7 +104,7 @@ func WriteJUnit(result *models.UnifiedTestResult, writer io.Writer) error {
 }
 
 // convertToJUnit converts TikiTestResult to JUnit XML structure
-func convertToJUnit(result *models.UnifiedTestResult) *JUnitTestSuites {
+func convertToJUnit(result *models.TikiTestResult) *JUnitTestSuites {
 	junitSuites := &JUnitTestSuites{
 		Name:      "Combined Test Results",
 		Tests:     result.Summary.Total,

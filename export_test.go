@@ -11,7 +11,7 @@ import (
 
 func TestExportFunctionality(t *testing.T) {
 	// Create a sample tiki test result
-	result := &models.UnifiedTestResult{
+	result := &models.TikiTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "test",
 			Timestamp: time.Now(),

@@ -10,8 +10,8 @@ import (
 
 // Exporter defines the interface for format-specific exporters
 type Exporter interface {
-	Export(result *models.UnifiedTestResult, outputPath string) error
-	Write(result *models.UnifiedTestResult, writer io.Writer) error
+	Export(result *models.TikiTestResult, outputPath string) error
+	Write(result *models.TikiTestResult, writer io.Writer) error
 	FormatName() string
 }
 
@@ -40,7 +40,7 @@ func (em *ExportManager) RegisterExporter(format string, exporter Exporter) {
 }
 
 // Export converts and writes the tiki result to the specified format
-func (em *ExportManager) Export(result *models.UnifiedTestResult, format, outputPath string) error {
+func (em *ExportManager) Export(result *models.TikiTestResult, format, outputPath string) error {
 	exporter, exists := em.exporters[strings.ToLower(format)]
 	if !exists {
 		return fmt.Errorf("unsupported export format: %s", format)
@@ -50,7 +50,7 @@ func (em *ExportManager) Export(result *models.UnifiedTestResult, format, output
 }
 
 // Write converts and writes the tiki result to the specified format using a writer
-func (em *ExportManager) Write(result *models.UnifiedTestResult, format string, writer io.Writer) error {
+func (em *ExportManager) Write(result *models.TikiTestResult, format string, writer io.Writer) error {
 	exporter, exists := em.exporters[strings.ToLower(format)]
 	if !exists {
 		return fmt.Errorf("unsupported export format: %s", format)
@@ -73,11 +73,11 @@ func (em *ExportManager) SupportedExportFormats() []string {
 // JUnitExporter exports to JUnit XML format
 type JUnitExporter struct{}
 
-func (e *JUnitExporter) Export(result *models.UnifiedTestResult, outputPath string) error {
+func (e *JUnitExporter) Export(result *models.TikiTestResult, outputPath string) error {
 	return ExportJUnit(result, outputPath)
 }
 
-func (e *JUnitExporter) Write(result *models.UnifiedTestResult, writer io.Writer) error {
+func (e *JUnitExporter) Write(result *models.TikiTestResult, writer io.Writer) error {
 	return WriteJUnit(result, writer)
 }
 
@@ -88,11 +88,11 @@ func (e *JUnitExporter) FormatName() string {
 // TAPExporter exports to TAP format
 type TAPExporter struct{}
 
-func (e *TAPExporter) Export(result *models.UnifiedTestResult, outputPath string) error {
+func (e *TAPExporter) Export(result *models.TikiTestResult, outputPath string) error {
 	return ExportTAP(result, outputPath)
 }
 
-func (e *TAPExporter) Write(result *models.UnifiedTestResult, writer io.Writer) error {
+func (e *TAPExporter) Write(result *models.TikiTestResult, writer io.Writer) error {
 	return WriteTAP(result, writer)
 }
 
@@ -103,11 +103,11 @@ func (e *TAPExporter) FormatName() string {
 // GoTestExporter exports to Go test JSON format
 type GoTestExporter struct{}
 
-func (e *GoTestExporter) Export(result *models.UnifiedTestResult, outputPath string) error {
+func (e *GoTestExporter) Export(result *models.TikiTestResult, outputPath string) error {
 	return ExportGoTest(result, outputPath)
 }
 
-func (e *GoTestExporter) Write(result *models.UnifiedTestResult, writer io.Writer) error {
+func (e *GoTestExporter) Write(result *models.TikiTestResult, writer io.Writer) error {
 	return WriteGoTest(result, writer)
 }
 

@@ -10,7 +10,7 @@ import (
 )
 
 // ExportTAP converts a TikiTestResult to TAP (Test Anything Protocol) format
-func ExportTAP(result *models.UnifiedTestResult, outputPath string) error {
+func ExportTAP(result *models.TikiTestResult, outputPath string) error {
 	file, err := os.Create(outputPath)
 	if err != nil {
 		return fmt.Errorf("failed to create output file: %w", err)
@@ -21,7 +21,7 @@ func ExportTAP(result *models.UnifiedTestResult, outputPath string) error {
 }
 
 // WriteTAP writes a TikiTestResult as TAP format to the provided writer
-func WriteTAP(result *models.UnifiedTestResult, writer io.Writer) error {
+func WriteTAP(result *models.TikiTestResult, writer io.Writer) error {
 	// Write TAP version header
 	if _, err := fmt.Fprintf(writer, "TAP version 13\n"); err != nil {
 		return fmt.Errorf("failed to write TAP header: %w", err)
