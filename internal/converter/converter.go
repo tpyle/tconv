@@ -158,3 +158,20 @@ func (c *Converter) ConvertMultiple(inputFiles []string, inputType, outputFile s
 
 	return nil
 }
+
+// LoadUnified loads a unified test result from a JSON file
+func (c *Converter) LoadUnified(inputFile string) (*models.UnifiedTestResult, error) {
+	file, err := os.Open(inputFile)
+	if err != nil {
+		return nil, fmt.Errorf("failed to open input file: %w", err)
+	}
+	defer file.Close()
+
+	var result models.UnifiedTestResult
+	decoder := json.NewDecoder(file)
+	if err := decoder.Decode(&result); err != nil {
+		return nil, fmt.Errorf("failed to decode unified test result: %w", err)
+	}
+
+	return &result, nil
+}

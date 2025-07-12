@@ -22,12 +22,15 @@
 //
 //	// Detect file type
 //	fileType, err := tconv.DetectFileType("unknown.xml")
-//
 package tconv
 
 import (
+	"io"
+
 	"github.com/tpyle/tconv/internal/converter"
 	"github.com/tpyle/tconv/internal/detector"
+	"github.com/tpyle/tconv/internal/exporters"
+	"github.com/tpyle/tconv/pkg/models"
 )
 
 // Convert processes a single test file and converts it to the unified JSON format.
@@ -71,15 +74,76 @@ func DetectFileType(filePath string) (string, error) {
 	return detector.DetectFileType(filePath)
 }
 
-// SupportedFormats returns a list of all supported test file formats.
-func SupportedFormats() []string {
-	return []string{
-		"junit",   // JUnit XML test results
-		"testng",  // TestNG XML test results  
-		"xunit",   // xUnit.net XML test results
-		"gotest",  // Go test JSON output
-		"postman", // Postman collection runner JSON
-		"pytest",  // pytest JSON report
-		"tap",     // Test Anything Protocol
+type Format string
+
+const (
+	FormatJUnit   Format = "junit"   // JUnit XML test results
+	FormatTestNG  Format = "testng"  // TestNG XML test results
+	FormatXUnit   Format = "xunit"   // xUnit.net XML test results
+	FormatGoTest  Format = "gotest"  // Go test JSON output
+	FormatPostman Format = "postman" // Postman collection runner JSON
+	FormatPyTest  Format = "pytest"  // pytest JSON report
+	FormatTAP     Format = "tap"     // Test Anything Protocol
+)
+
+// SupportedFormats returns a list of all supported test file formats for import.
+func SupportedFormats() []Format {
+	return []Format{
+		FormatJUnit,   // JUnit XML test results
+		FormatTestNG,  // TestNG XML test results
+		FormatXUnit,   // xUnit.net XML test results
+		FormatGoTest,  // Go test JSON output
+		FormatPostman, // Postman collection runner JSON
+		FormatPyTest,  // pytest JSON report
+		FormatTAP,     // Test Anything Protocol
 	}
+}
+
+// Export converts a unified test result to the specified format and writes it to a file.
+//
+// This function performs the reverse conversion - from unified format to specific formats.
+//
+// Parameters:
+//   - result: The unified test result to export
+//   - format: Target format ("junit", "tap", "gotest")
+//   - outputFile: Path where the converted file will be written
+//
+// Returns an error if the export fails.
+func Export(result *models.UnifiedTestResult, format, outputFile string) error {
+	manager := exporters.NewExportManager()
+	return manager.Export(result, format, outputFile)
+}
+
+// ExportToWriter converts a unified test result to the specified format and writes it to a writer.
+//
+// This function performs the reverse conversion using an io.Writer instead of a file.
+//
+// Parameters:
+//   - result: The unified test result to export
+//   - format: Target format ("junit", "tap", "gotest")
+//   - writer: Writer where the converted content will be written
+//
+// Returns an error if the export fails.
+func ExportToWriter(result *models.UnifiedTestResult, format string, writer io.Writer) error {
+	manager := exporters.NewExportManager()
+	return manager.Write(result, format, writer)
+}
+
+// SupportedExportFormats returns a list of all supported export formats.
+func SupportedExportFormats() []string {
+	manager := exporters.NewExportManager()
+	return manager.SupportedExportFormats()
+}
+
+// LoadUnified loads a unified test result from a JSON file.
+//
+// This function can be used to read previously converted results for export to other formats.
+//
+// Parameters:
+//   - inputFile: Path to the unified JSON file
+//
+// Returns the loaded UnifiedTestResult or an error if loading fails.
+func LoadUnified(inputFile string) (*models.UnifiedTestResult, error) {
+	conv := converter.New()
+	return conv.LoadUnified(inputFile)
 }
