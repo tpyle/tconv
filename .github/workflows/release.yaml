@@ -29,13 +29,17 @@ jobs:
       - name: Build binary
         env:
           ARCH: ${{ matrix.arch }}
-        run: CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o tconv-${ARCH%%/*}-${ARCH##*/} ./cmd/main.go
+        id: build
+        run: |
+          output_file="tconv-${ARCH%%/*}-${ARCH##*/}"
+          CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o ${output_file} ./cmd/main.go
+          echo output_file=$output_file | tee -a $GITHUB_OUTPUT
 
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
           name: tconv-binary
-          path: tconv-${{ matrix.arch }}
+          path: ${{ steps.build.outputs.output_file }}
 
   release:
     needs: build
