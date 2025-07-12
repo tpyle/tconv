@@ -1,44 +1,15 @@
-{"Time":"2025-07-12T13:30:32.901804237-04:00","Action":"start","Package":"github.com/tpyle/tconv"}
-{"Time":"2025-07-12T13:30:32.903293822-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI"}
-{"Time":"2025-07-12T13:30:32.903316335-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI","Output":"=== RUN   TestPublicAPI\n"}
-{"Time":"2025-07-12T13:30:32.903348591-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/SupportedFormats"}
-{"Time":"2025-07-12T13:30:32.903352795-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/SupportedFormats","Output":"=== RUN   TestPublicAPI/SupportedFormats\n"}
-{"Time":"2025-07-12T13:30:32.903360054-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/SupportedFormats","Output":"--- PASS: TestPublicAPI/SupportedFormats (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.903363893-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/SupportedFormats","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.903368437-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/DetectFileType"}
-{"Time":"2025-07-12T13:30:32.903371253-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/DetectFileType","Output":"=== RUN   TestPublicAPI/DetectFileType\n"}
-{"Time":"2025-07-12T13:30:32.903376936-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/DetectFileType","Output":"--- PASS: TestPublicAPI/DetectFileType (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.903380947-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/DetectFileType","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.903384358-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/Convert"}
-{"Time":"2025-07-12T13:30:32.903387146-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/Convert","Output":"=== RUN   TestPublicAPI/Convert\n"}
-{"Time":"2025-07-12T13:30:32.903889498-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/Convert","Output":"--- PASS: TestPublicAPI/Convert (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.90390067-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI/Convert","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.903905397-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI","Output":"--- PASS: TestPublicAPI (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.903908925-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestPublicAPI","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.903912353-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality"}
-{"Time":"2025-07-12T13:30:32.903915286-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality","Output":"=== RUN   TestExportFunctionality\n"}
-{"Time":"2025-07-12T13:30:32.903919666-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/SupportedExportFormats"}
-{"Time":"2025-07-12T13:30:32.903922763-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/SupportedExportFormats","Output":"=== RUN   TestExportFunctionality/SupportedExportFormats\n"}
-{"Time":"2025-07-12T13:30:32.903930907-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/SupportedExportFormats","Output":"--- PASS: TestExportFunctionality/SupportedExportFormats (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.903935321-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/SupportedExportFormats","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.903938777-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToJUnit"}
-{"Time":"2025-07-12T13:30:32.903941722-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToJUnit","Output":"=== RUN   TestExportFunctionality/ExportToJUnit\n"}
-{"Time":"2025-07-12T13:30:32.904012399-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToJUnit","Output":"--- PASS: TestExportFunctionality/ExportToJUnit (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.904021685-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToJUnit","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.904026668-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToTAP"}
-{"Time":"2025-07-12T13:30:32.904029791-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToTAP","Output":"=== RUN   TestExportFunctionality/ExportToTAP\n"}
-{"Time":"2025-07-12T13:30:32.904036335-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToTAP","Output":"--- PASS: TestExportFunctionality/ExportToTAP (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.904040927-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToTAP","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.904045134-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToGoTest"}
-{"Time":"2025-07-12T13:30:32.904048886-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToGoTest","Output":"=== RUN   TestExportFunctionality/ExportToGoTest\n"}
-{"Time":"2025-07-12T13:30:32.904150949-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToGoTest","Output":"--- PASS: TestExportFunctionality/ExportToGoTest (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.90416262-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/ExportToGoTest","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.904167735-04:00","Action":"run","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/UnsupportedFormat"}
-{"Time":"2025-07-12T13:30:32.904171014-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/UnsupportedFormat","Output":"=== RUN   TestExportFunctionality/UnsupportedFormat\n"}
-{"Time":"2025-07-12T13:30:32.904174832-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/UnsupportedFormat","Output":"--- PASS: TestExportFunctionality/UnsupportedFormat (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.904178267-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality/UnsupportedFormat","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.90418329-04:00","Action":"output","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality","Output":"--- PASS: TestExportFunctionality (0.00s)\n"}
-{"Time":"2025-07-12T13:30:32.904186735-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Test":"TestExportFunctionality","Elapsed":0}
-{"Time":"2025-07-12T13:30:32.904189632-04:00","Action":"output","Package":"github.com/tpyle/tconv","Output":"PASS\n"}
-{"Time":"2025-07-12T13:30:32.904397176-04:00","Action":"output","Package":"github.com/tpyle/tconv","Output":"ok  \tgithub.com/tpyle/tconv\t0.002s\n"}
-{"Time":"2025-07-12T13:30:32.904412137-04:00","Action":"pass","Package":"github.com/tpyle/tconv","Elapsed":0.003}
+{"Time":"2023-01-01T10:00:00Z","Action":"run","Package":"github.com/example/myapp"}
+{"Time":"2023-01-01T10:00:00.1Z","Action":"run","Package":"github.com/example/myapp","Test":"TestAddition"}
+{"Time":"2023-01-01T10:00:00.15Z","Action":"output","Package":"github.com/example/myapp","Test":"TestAddition","Output":"=== RUN   TestAddition\n"}
+{"Time":"2023-01-01T10:00:00.2Z","Action":"output","Package":"github.com/example/myapp","Test":"TestAddition","Output":"    math_test.go:10: Testing addition\n"}
+{"Time":"2023-01-01T10:00:00.25Z","Action":"pass","Package":"github.com/example/myapp","Test":"TestAddition","Elapsed":0.15}
+{"Time":"2023-01-01T10:00:00.3Z","Action":"run","Package":"github.com/example/myapp","Test":"TestSubtraction"}
+{"Time":"2023-01-01T10:00:00.35Z","Action":"output","Package":"github.com/example/myapp","Test":"TestSubtraction","Output":"=== RUN   TestSubtraction\n"}
+{"Time":"2023-01-01T10:00:00.4Z","Action":"output","Package":"github.com/example/myapp","Test":"TestSubtraction","Output":"    math_test.go:20: Testing subtraction\n"}
+{"Time":"2023-01-01T10:00:00.45Z","Action":"output","Package":"github.com/example/myapp","Test":"TestSubtraction","Output":"    math_test.go:22: Expected 2, got 3\n"}
+{"Time":"2023-01-01T10:00:00.5Z","Action":"fail","Package":"github.com/example/myapp","Test":"TestSubtraction","Elapsed":0.2}
+{"Time":"2023-01-01T10:00:00.55Z","Action":"run","Package":"github.com/example/myapp","Test":"TestDivision"}
+{"Time":"2023-01-01T10:00:00.6Z","Action":"output","Package":"github.com/example/myapp","Test":"TestDivision","Output":"=== RUN   TestDivision\n"}
+{"Time":"2023-01-01T10:00:00.65Z","Action":"output","Package":"github.com/example/myapp","Test":"TestDivision","Output":"    math_test.go:30: Skipping division test\n"}
+{"Time":"2023-01-01T10:00:00.7Z","Action":"skip","Package":"github.com/example/myapp","Test":"TestDivision","Elapsed":0.1}
+{"Time":"2023-01-01T10:00:00.75Z","Action":"pass","Package":"github.com/example/myapp","Elapsed":0.45}
