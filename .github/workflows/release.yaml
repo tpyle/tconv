@@ -29,7 +29,7 @@ jobs:
       - name: Build binary
         env:
           ARCH: ${{ matrix.arch }}
-        run: CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o tconv-${{ matrix.arch }} ./cmd/tconv
+        run: CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o tconv-${ARCH%%/*}-${ARCH##*/} ./cmd/main.go
 
       - name: Upload binary
         uses: actions/upload-artifact@v4
