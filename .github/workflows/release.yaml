@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+          - linux/amd64
+          - linux/arm64
+          - windows/amd64
+          - windows/arm64
+          - darwin/amd64
+          - darwin/arm64
+    name: Build for ${{ matrix.arch }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+
+      - name: Build binary
+        env:
+          ARCH: ${{ matrix.arch }}
+        run: CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o tconv-${{ matrix.arch }} ./cmd/tconv
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: tconv-binary
+          path: tconv-${{ matrix.arch }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download binaries
+        uses: actions/download-artifact@v3
+        with:
+          name: tconv-binary
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          files: |
+            tconv-linux-amd64
+            tconv-linux-arm64
+            tconv-windows-amd64.exe
+            tconv-windows-arm64.exe
+            tconv-darwin-amd64
+            tconv-darwin-arm64
