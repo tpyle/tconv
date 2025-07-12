@@ -36,7 +36,7 @@ jobs:
           if [ "${ARCH%%/*}" = "windows" ]; then
             output_file="${output_file}.exe"
           fi
-          CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o ${output_file} ./cmd/main.go
+          CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -ldflags "-X main.version=${{ github.ref_name }}" -o ${output_file} ./cmd/main.go
           echo arch_pair=$arch_pair | tee -a $GITHUB_OUTPUT
           echo output_file=$output_file | tee -a $GITHUB_OUTPUT
 

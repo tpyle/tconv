@@ -9,6 +9,9 @@ import (
 	"github.com/tpyle/tconv/internal/exporters"
 )
 
+// version can be set at build time with -ldflags "-X main.version=v1.2.3"
+var version = "trunk"
+
 func main() {
 	var inputFiles []string
 	var inputType, outputFile, exportFormat string
@@ -64,7 +67,7 @@ func main() {
 	}
 
 	if showVersion {
-		fmt.Printf("tconv version 1.0.0\n")
+		fmt.Printf("tconv version %s\n", version)
 		fmt.Printf("Test format converter supporting JUnit, Postman, Go test, TAP, xUnit, pytest, and TestNG\n")
 		fmt.Printf("Now supports combining multiple input files into a single output\n")
 		os.Exit(0)
