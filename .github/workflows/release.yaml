@@ -31,14 +31,19 @@ jobs:
           ARCH: ${{ matrix.arch }}
         id: build
         run: |
-          output_file="tconv-${ARCH%%/*}-${ARCH##*/}"
+          arch_pair=${ARCH%%/*}-${ARCH##*/}
+          output_file="tconv-${arch_pair}"
           CGO_ENABLED=0 GOARCH=${ARCH##*/} GOOS=${ARCH%%/*} go build -o ${output_file} ./cmd/main.go
+          if [ "${ARCH%%/*}" = "windows" ]; then
+            output_file="${output_file}.exe"
+          fi
+          echo arch_pair=$arch_pair | tee -a $GITHUB_OUTPUT
           echo output_file=$output_file | tee -a $GITHUB_OUTPUT
 
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: tconv-binary
+          name: tconv-binary-${{ steps.build.outputs.arch_pair }}
           path: ${{ steps.build.outputs.output_file }}
 
   release:
@@ -48,7 +53,8 @@ jobs:
       - name: Download binaries
         uses: actions/download-artifact@v4
         with:
-          name: tconv-binary
+          name: tconv-binary-*
+          merge-multiple: true
 
       - name: Create release
         uses: softprops/action-gh-release@v2
