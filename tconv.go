@@ -1,13 +1,13 @@
-// Package tconv provides a unified test result conversion library.
+// Package tconv provides a tiki test result conversion library.
 //
 // This package converts test results from various formats (JUnit, TestNG, xUnit,
-// Go test, Postman, pytest, TAP) into a standardized JSON format.
+// Go test, Postman, pytest, TAP) into a standardized tiki JSON format.
 //
 // The main entry points for library consumers are:
 //   - Convert(): Convert single files
 //   - ConvertMultiple(): Convert and combine multiple files
 //   - DetectFileType(): Auto-detect test file formats
-//   - The models package: Access to unified data structures
+//   - The models package: Access to tiki data structures
 //
 // Basic usage:
 //
@@ -33,12 +33,12 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
-// Convert processes a single test file and converts it to the unified JSON format.
+// Convert processes a single test file and converts it to the tiki JSON format.
 //
 // Parameters:
 //   - inputFile: Path to the input test file
 //   - inputType: Format type ("junit", "testng", "xunit", "gotest", "postman", "pytest", "tap")
-//   - outputFile: Path where the converted JSON will be written
+//   - outputFile: Path where the converted tiki JSON will be written
 //
 // Returns an error if the conversion fails.
 func Convert(inputFile, inputType, outputFile string) error {
@@ -46,7 +46,7 @@ func Convert(inputFile, inputType, outputFile string) error {
 	return conv.Convert(inputFile, inputType, outputFile)
 }
 
-// ConvertMultiple processes multiple test files and combines them into a single unified result.
+// ConvertMultiple processes multiple test files and combines them into a single tiki result.
 //
 // If inputType is empty, file types will be auto-detected.
 // If inputType is specified, all files will be treated as that type.
@@ -54,7 +54,7 @@ func Convert(inputFile, inputType, outputFile string) error {
 // Parameters:
 //   - inputFiles: Slice of paths to input test files
 //   - inputType: Format type (empty for auto-detection, or "junit", "testng", etc.)
-//   - outputFile: Path where the combined JSON will be written
+//   - outputFile: Path where the combined tiki JSON will be written
 //
 // Returns an error if any conversion fails.
 func ConvertMultiple(inputFiles []string, inputType, outputFile string) error {
@@ -99,12 +99,12 @@ func SupportedFormats() []Format {
 	}
 }
 
-// Export converts a unified test result to the specified format and writes it to a file.
+// Export converts a tiki test result to the specified format and writes it to a file.
 //
-// This function performs the reverse conversion - from unified format to specific formats.
+// This function performs the reverse conversion - from tiki format to specific formats.
 //
 // Parameters:
-//   - result: The unified test result to export
+//   - result: The tiki test result to export
 //   - format: Target format ("junit", "tap", "gotest")
 //   - outputFile: Path where the converted file will be written
 //
@@ -114,12 +114,12 @@ func Export(result *models.UnifiedTestResult, format, outputFile string) error {
 	return manager.Export(result, format, outputFile)
 }
 
-// ExportToWriter converts a unified test result to the specified format and writes it to a writer.
+// ExportToWriter converts a tiki test result to the specified format and writes it to a writer.
 //
 // This function performs the reverse conversion using an io.Writer instead of a file.
 //
 // Parameters:
-//   - result: The unified test result to export
+//   - result: The tiki test result to export
 //   - format: Target format ("junit", "tap", "gotest")
 //   - writer: Writer where the converted content will be written
 //
@@ -135,15 +135,15 @@ func SupportedExportFormats() []string {
 	return manager.SupportedExportFormats()
 }
 
-// LoadUnified loads a unified test result from a JSON file.
+// LoadTiki loads a tiki test result from a JSON file.
 //
 // This function can be used to read previously converted results for export to other formats.
 //
 // Parameters:
-//   - inputFile: Path to the unified JSON file
+//   - inputFile: Path to the tiki JSON file
 //
 // Returns the loaded UnifiedTestResult or an error if loading fails.
-func LoadUnified(inputFile string) (*models.UnifiedTestResult, error) {
+func LoadTiki(inputFile string) (*models.UnifiedTestResult, error) {
 	conv := converter.New()
-	return conv.LoadUnified(inputFile)
+	return conv.LoadTiki(inputFile)
 }

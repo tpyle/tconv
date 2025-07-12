@@ -10,7 +10,7 @@ import (
 )
 
 func TestExportFunctionality(t *testing.T) {
-	// Create a sample unified test result
+	// Create a sample tiki test result
 	result := &models.UnifiedTestResult{
 		Metadata: models.TestMetadata{
 			Source:    "test",

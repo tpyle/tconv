@@ -21,7 +21,7 @@ type GoTestEvent struct {
 	Output  string    `json:"Output,omitempty"`
 }
 
-// ExportGoTest converts a UnifiedTestResult to Go test JSON format
+// ExportGoTest converts a TikiTestResult to Go test JSON format
 func ExportGoTest(result *models.UnifiedTestResult, outputPath string) error {
 	file, err := os.Create(outputPath)
 	if err != nil {
@@ -32,7 +32,7 @@ func ExportGoTest(result *models.UnifiedTestResult, outputPath string) error {
 	return WriteGoTest(result, file)
 }
 
-// WriteGoTest writes a UnifiedTestResult as Go test JSON to the provided writer
+// WriteGoTest writes a TikiTestResult as Go test JSON to the provided writer
 func WriteGoTest(result *models.UnifiedTestResult, writer io.Writer) error {
 	encoder := json.NewEncoder(writer)
 	baseTime := result.Metadata.Timestamp

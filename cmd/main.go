@@ -17,8 +17,8 @@ func main() {
 	pflag.StringSliceVarP(&inputFiles, "input", "i", []string{}, "Input file paths (can specify multiple)")
 	pflag.StringVarP(&inputType, "type", "t", "", "Input type (junit, postman, gotest, tap, xunit, pytest, testng) - optional for auto-detection")
 	pflag.StringVarP(&outputFile, "output", "o", "", "Output file path")
-	pflag.StringVarP(&exportFormat, "export", "e", "", "Export unified JSON to specified format (junit, tap, gotest)")
-	pflag.BoolVar(&exportMode, "export-mode", false, "Enable export mode: convert FROM unified JSON TO other formats")
+	pflag.StringVarP(&exportFormat, "export", "e", "", "Export tiki JSON to specified format (junit, tap, gotest)")
+	pflag.BoolVar(&exportMode, "export-mode", false, "Enable export mode: convert FROM tiki JSON TO other formats")
 	pflag.BoolVarP(&showHelp, "help", "h", false, "Show help message")
 	pflag.BoolVarP(&showVersion, "version", "v", false, "Show version information")
 	pflag.Parse()
@@ -31,10 +31,10 @@ func main() {
 	if showHelp {
 		fmt.Printf("tconv - Test Converter Tool\n\n")
 		fmt.Printf("Usage: %s [OPTIONS] [files...]\n\n", os.Args[0])
-		fmt.Printf("Convert test output files between different formats into a unified JSON format.\n")
+		fmt.Printf("Convert test output files between different formats into a tiki JSON format.\n")
 		fmt.Printf("Multiple input files of different types will be combined into a single output.\n")
 		fmt.Printf("File types are auto-detected when --type is not specified.\n")
-		fmt.Printf("Can also export unified JSON back to specific test formats.\n\n")
+		fmt.Printf("Can also export tiki JSON back to specific test formats.\n\n")
 		fmt.Printf("Options:\n")
 		pflag.PrintDefaults()
 		fmt.Printf("\nSupported input types:\n")
@@ -56,10 +56,10 @@ func main() {
 		fmt.Printf("\n  # Import: Multiple files of different types (auto-detected)\n")
 		fmt.Printf("  %s --output combined.json results.xml gotest.json postman.json\n", os.Args[0])
 		fmt.Printf("  %s -i junit.xml -i pytest.json -i tap.tap -o combined.json\n", os.Args[0])
-		fmt.Printf("\n  # Export: Convert unified JSON to other formats\n")
-		fmt.Printf("  %s --export junit --input unified.json --output results.xml\n", os.Args[0])
+		fmt.Printf("\n  # Export: Convert tiki JSON to other formats\n")
+		fmt.Printf("  %s --export junit --input tiki.json --output results.xml\n", os.Args[0])
 		fmt.Printf("  %s -e tap -i combined.json -o output.tap\n", os.Args[0])
-		fmt.Printf("  %s --export gotest --input unified.json --output test.json\n", os.Args[0])
+		fmt.Printf("  %s --export gotest --input tiki.json --output test.json\n", os.Args[0])
 		os.Exit(0)
 	}
 
@@ -72,9 +72,9 @@ func main() {
 
 	// Check for export mode
 	if exportFormat != "" {
-		// Export mode: convert FROM unified JSON TO specific format
+		// Export mode: convert FROM tiki JSON TO specific format
 		if len(inputFiles) != 1 {
-			fmt.Fprintf(os.Stderr, "Error: Export mode requires exactly one input file (unified JSON)\n")
+			fmt.Fprintf(os.Stderr, "Error: Export mode requires exactly one input file (tiki JSON)\n")
 			os.Exit(1)
 		}
 		if outputFile == "" {
@@ -82,11 +82,11 @@ func main() {
 			os.Exit(1)
 		}
 
-		// Load unified JSON
+		// Load tiki JSON
 		conv := converter.New()
-		result, err := conv.LoadUnified(inputFiles[0])
+		result, err := conv.LoadTiki(inputFiles[0])
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Error loading unified JSON: %v\n", err)
+			fmt.Fprintf(os.Stderr, "Error loading tiki JSON: %v\n", err)
 			os.Exit(1)
 		}
 
@@ -101,12 +101,12 @@ func main() {
 		return
 	}
 
-	// Regular conversion mode: convert TO unified JSON
+	// Regular conversion mode: convert TO tiki JSON
 	if len(inputFiles) == 0 || outputFile == "" {
 		fmt.Fprintf(os.Stderr, "Error: Missing required arguments\n\n")
 		fmt.Fprintf(os.Stderr, "Usage: %s --input <file(s)> [--type <type>] --output <file>\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "       %s [--type <type>] --output <file> file1 file2 ...\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "       %s --export <format> --input <unified.json> --output <file>\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "       %s --export <format> --input <tiki.json> --output <file>\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Use --help for more information\n")
 		os.Exit(1)
 	}

@@ -9,7 +9,7 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
-// ExportTAP converts a UnifiedTestResult to TAP (Test Anything Protocol) format
+// ExportTAP converts a TikiTestResult to TAP (Test Anything Protocol) format
 func ExportTAP(result *models.UnifiedTestResult, outputPath string) error {
 	file, err := os.Create(outputPath)
 	if err != nil {
@@ -20,7 +20,7 @@ func ExportTAP(result *models.UnifiedTestResult, outputPath string) error {
 	return WriteTAP(result, file)
 }
 
-// WriteTAP writes a UnifiedTestResult as TAP format to the provided writer
+// WriteTAP writes a TikiTestResult as TAP format to the provided writer
 func WriteTAP(result *models.UnifiedTestResult, writer io.Writer) error {
 	// Write TAP version header
 	if _, err := fmt.Fprintf(writer, "TAP version 13\n"); err != nil {

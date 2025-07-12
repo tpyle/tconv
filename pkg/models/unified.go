@@ -1,6 +1,6 @@
 // Package models provides the core data structures for test result representation.
 // This package is designed to be importable by other programs that want to use
-// the unified test result format.
+// the tiki test result format.
 package models
 
 import (
@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// UnifiedTestResult represents the standardized test result format that all
+// UnifiedTestResult represents the standardized tiki test result format that all
 // parsers convert to. This is the primary export type for library consumers.
 //
 // The structure is designed to accommodate test results from various testing

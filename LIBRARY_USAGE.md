@@ -1,6 +1,6 @@
 # tconv Library Usage Guide
 
-The `tconv` project provides both a command-line tool and a Go library for converting test results from various formats into a unified JSON representation.
+The `tconv` project provides both a command-line tool and a Go library for converting test results from various formats into a tiki JSON representation.
 
 ## Library Overview
 
@@ -8,7 +8,7 @@ The library is designed to be modular and extensible, with clear interfaces that
 
 ### Key Packages
 
-- **`pkg/models`**: Core data structures and the unified test result format
+- **`pkg/models`**: Core data structures and the tiki test result format
 - **`pkg/detector`**: File type detection for automatic format identification  
 - **`pkg/parsers`**: Format-specific parsers for different test frameworks
 - **`pkg/converter`**: High-level conversion and combination logic
@@ -43,7 +43,7 @@ import (
 func main() {
     conv := converter.New()
     
-    // Convert a JUnit XML file to unified format
+    // Convert a JUnit XML file to tiki format
     err := conv.Convert("test-results.xml", "junit", "output.json")
     if err != nil {
         log.Fatal(err)
@@ -122,7 +122,7 @@ func main() {
 }
 ```
 
-### Working with the Unified Format
+### Working with the Tiki Format
 
 ```go
 package main
@@ -144,7 +144,7 @@ func main() {
         log.Fatal(err)
     }
     
-    // Access the unified data
+    // Access the tiki data
     fmt.Printf("Test run from: %s\n", result.Metadata.Source)
     fmt.Printf("Framework: %s\n", result.Metadata.Framework)
     fmt.Printf("Total tests: %d\n", result.Summary.Total)

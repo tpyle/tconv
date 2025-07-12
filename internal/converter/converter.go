@@ -159,8 +159,8 @@ func (c *Converter) ConvertMultiple(inputFiles []string, inputType, outputFile s
 	return nil
 }
 
-// LoadUnified loads a unified test result from a JSON file
-func (c *Converter) LoadUnified(inputFile string) (*models.UnifiedTestResult, error) {
+// LoadTiki loads a tiki test result from a JSON file
+func (c *Converter) LoadTiki(inputFile string) (*models.UnifiedTestResult, error) {
 	file, err := os.Open(inputFile)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open input file: %w", err)
@@ -170,8 +170,13 @@ func (c *Converter) LoadUnified(inputFile string) (*models.UnifiedTestResult, er
 	var result models.UnifiedTestResult
 	decoder := json.NewDecoder(file)
 	if err := decoder.Decode(&result); err != nil {
-		return nil, fmt.Errorf("failed to decode unified test result: %w", err)
+		return nil, fmt.Errorf("failed to decode tiki test result: %w", err)
 	}
 
 	return &result, nil
+}
+
+// LoadUnified is deprecated. Use LoadTiki instead.
+func (c *Converter) LoadUnified(inputFile string) (*models.UnifiedTestResult, error) {
+	return c.LoadTiki(inputFile)
 }

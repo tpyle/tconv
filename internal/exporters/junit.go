@@ -72,7 +72,7 @@ type JUnitSkipped struct {
 	Message string   `xml:"message,attr,omitempty"`
 }
 
-// ExportJUnit converts a UnifiedTestResult to JUnit XML format
+// ExportJUnit converts a TikiTestResult to JUnit XML format
 func ExportJUnit(result *models.UnifiedTestResult, outputPath string) error {
 	file, err := os.Create(outputPath)
 	if err != nil {
@@ -83,7 +83,7 @@ func ExportJUnit(result *models.UnifiedTestResult, outputPath string) error {
 	return WriteJUnit(result, file)
 }
 
-// WriteJUnit writes a UnifiedTestResult as JUnit XML to the provided writer
+// WriteJUnit writes a TikiTestResult as JUnit XML to the provided writer
 func WriteJUnit(result *models.UnifiedTestResult, writer io.Writer) error {
 	junitSuites := convertToJUnit(result)
 
@@ -103,7 +103,7 @@ func WriteJUnit(result *models.UnifiedTestResult, writer io.Writer) error {
 	return nil
 }
 
-// convertToJUnit converts UnifiedTestResult to JUnit XML structure
+// convertToJUnit converts TikiTestResult to JUnit XML structure
 func convertToJUnit(result *models.UnifiedTestResult) *JUnitTestSuites {
 	junitSuites := &JUnitTestSuites{
 		Name:      "Combined Test Results",

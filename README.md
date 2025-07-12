@@ -1,6 +1,6 @@
 # tconv - Test Output Converter
 
-A Go CLI application that converts multiple popular test output formats into a unified custom JSON format.
+A Go CLI application that converts multiple popular test output formats into a tiki custom JSON format.
 
 ## Features
 
@@ -12,7 +12,7 @@ A Go CLI application that converts multiple popular test output formats into a u
   - xUnit XML
   - pytest JSON
   - TestNG XML
-- **Unified Schema**: Creates a superset JSON format that encompasses all input types
+- **Tiki Schema**: Creates a superset JSON format that encompasses all input types
 - **CLI Interface**: Simple command-line interface for easy integration
 - **Comprehensive Testing**: High test coverage across all parsers and converters
 
@@ -26,25 +26,25 @@ go build -o tconv main.go
 
 ```bash
 # Convert JUnit XML output
-./tconv -input junit_results.xml -type junit -output unified_results.json
+./tconv -input junit_results.xml -type junit -output tiki_results.json
 
 # Convert Postman collection runner output
-./tconv -input postman_results.json -type postman -output unified_results.json
+./tconv -input postman_results.json -type postman -output tiki_results.json
 
 # Convert Go test JSON output
-./tconv -input gotest_results.json -type gotest -output unified_results.json
+./tconv -input gotest_results.json -type gotest -output tiki_results.json
 
 # Convert TAP output
-./tconv -input tap_results.tap -type tap -output unified_results.json
+./tconv -input tap_results.tap -type tap -output tiki_results.json
 
 # Convert xUnit XML output
-./tconv -input xunit_results.xml -type xunit -output unified_results.json
+./tconv -input xunit_results.xml -type xunit -output tiki_results.json
 
 # Convert pytest JSON output
-./tconv -input pytest_results.json -type pytest -output unified_results.json
+./tconv -input pytest_results.json -type pytest -output tiki_results.json
 
 # Convert TestNG XML output
-./tconv -input testng_results.xml -type testng -output unified_results.json
+./tconv -input testng_results.xml -type testng -output tiki_results.json
 
 # Output to stdout (omit -output flag)
 ./tconv -input junit_results.xml -type junit
@@ -102,9 +102,9 @@ TestNG XML results format with support for:
 - Method-level timing
 - Reporter output and exceptions
 
-## Unified Output Format
+## Tiki Output Format
 
-The unified JSON format includes:
+The tiki JSON format includes:
 
 ```json
 {
@@ -184,7 +184,7 @@ go tool cover -html=coverage.out -o coverage.html
 ├── main.go                 # CLI entry point
 ├── pkg/
 │   ├── models/             # Data models for all formats
-│   │   ├── unified.go      # Unified output format
+│   │   ├── unified.go      # Tiki output format
 │   │   ├── junit.go        # JUnit XML structures
 │   │   ├── postman.go      # Postman JSON structures
 │   │   └── gotest.go       # Go test JSON structures
@@ -255,7 +255,7 @@ not ok 2 - Failed test' > example.tap
 ./tconv -input example.tap -type tap -output result.json
 ```
 
-The output will be a unified JSON format that can be consumed by various reporting tools regardless of the original test framework.
+The output will be a tiki JSON format that can be consumed by various reporting tools regardless of the original test framework.
 
 ## Supported Frameworks
 

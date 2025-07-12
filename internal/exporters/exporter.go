@@ -39,7 +39,7 @@ func (em *ExportManager) RegisterExporter(format string, exporter Exporter) {
 	em.exporters[strings.ToLower(format)] = exporter
 }
 
-// Export converts and writes the unified result to the specified format
+// Export converts and writes the tiki result to the specified format
 func (em *ExportManager) Export(result *models.UnifiedTestResult, format, outputPath string) error {
 	exporter, exists := em.exporters[strings.ToLower(format)]
 	if !exists {
@@ -49,7 +49,7 @@ func (em *ExportManager) Export(result *models.UnifiedTestResult, format, output
 	return exporter.Export(result, outputPath)
 }
 
-// Write converts and writes the unified result to the specified format using a writer
+// Write converts and writes the tiki result to the specified format using a writer
 func (em *ExportManager) Write(result *models.UnifiedTestResult, format string, writer io.Writer) error {
 	exporter, exists := em.exporters[strings.ToLower(format)]
 	if !exists {
