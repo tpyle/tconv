@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"testing"
+	"time"
 
 	"github.com/tpyle/tconv/pkg/models"
 )
@@ -54,8 +55,8 @@ func TestParseJUnit(t *testing.T) {
 		if tc.Status != models.StatusPassed {
 			t.Errorf("Expected testSuccess to be passed, got %s", tc.Status)
 		}
-		if tc.Time != 0.1 {
-			t.Errorf("Expected testSuccess time to be 0.1, got %f", tc.Time)
+		if tc.Time != 100*time.Millisecond {
+			t.Errorf("Expected testSuccess time to be 100ms, got %v", tc.Time)
 		}
 	} else {
 		t.Error("testSuccess not found")

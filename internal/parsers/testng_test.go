@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"testing"
+	"time"
 
 	"github.com/tpyle/tconv/pkg/models"
 )
@@ -49,8 +50,8 @@ func TestParseTestNG(t *testing.T) {
 		if tc.ClassName != "TestClass" {
 			t.Errorf("Expected className 'TestClass', got '%s'", tc.ClassName)
 		}
-		if tc.Time != 0.15 {
-			t.Errorf("Expected time 0.15, got %f", tc.Time)
+		if tc.Time != 150*time.Millisecond {
+			t.Errorf("Expected time 150ms, got %v", tc.Time)
 		}
 		if tc.Properties["signature"] != "TestClass.testAddition()" {
 			t.Errorf("Expected signature 'TestClass.testAddition()', got '%s'", tc.Properties["signature"])

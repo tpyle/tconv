@@ -60,7 +60,7 @@ func ParsePytest(filePath string) (*models.TikiTestResult, error) {
 	summary.Failed = pytestReport.Summary.Failed
 	summary.Skipped = pytestReport.Summary.Skipped
 	summary.Errors = pytestReport.Summary.Error
-	summary.Duration = pytestReport.Summary.Duration
+	summary.Duration = time.Duration(pytestReport.Summary.Duration * float64(time.Second))
 
 	for module, tests := range testsByModule {
 		suite := models.TestSuite{
@@ -95,7 +95,7 @@ func ParsePytest(filePath string) (*models.TikiTestResult, error) {
 				totalDuration += teardownDuration
 			}
 
-			testCase.Time = totalDuration
+			testCase.Time = time.Duration(totalDuration * float64(time.Second))
 
 			// Determine status based on outcome
 			switch pytestTest.Outcome {

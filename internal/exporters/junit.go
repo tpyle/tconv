@@ -111,7 +111,7 @@ func convertToJUnit(result *models.TikiTestResult) *JUnitTestSuites {
 		Failures:  result.Summary.Failed,
 		Errors:    result.Summary.Errors,
 		Skipped:   result.Summary.Skipped,
-		Time:      result.Summary.Duration,
+		Time:      result.Summary.Duration.Seconds(),
 		Timestamp: result.Metadata.Timestamp.Format(time.RFC3339),
 	}
 
@@ -124,7 +124,7 @@ func convertToJUnit(result *models.TikiTestResult) *JUnitTestSuites {
 			Failures:  suite.Failures,
 			Errors:    suite.Errors,
 			Skipped:   suite.Skipped,
-			Time:      suite.Time,
+			Time:      suite.Time.Seconds(),
 			Timestamp: result.Metadata.Timestamp.Format(time.RFC3339),
 		}
 
@@ -133,7 +133,7 @@ func convertToJUnit(result *models.TikiTestResult) *JUnitTestSuites {
 			junitCase := JUnitTestCase{
 				Name:      test.Name,
 				ClassName: test.ClassName,
-				Time:      test.Time,
+				Time:      test.Time.Seconds(),
 				SystemOut: test.SystemOut,
 				SystemErr: test.SystemErr,
 			}

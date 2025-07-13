@@ -26,7 +26,7 @@ func TestUnifiedTestResultSerialization(t *testing.T) {
 					{
 						Name:      "TestCase",
 						ClassName: "TestClass",
-						Time:      1.5,
+						Time:      1500 * time.Millisecond,
 						Status:    StatusPassed,
 						Message:   "Test passed",
 						Details:   "Test details",
@@ -50,7 +50,7 @@ func TestUnifiedTestResultSerialization(t *testing.T) {
 				Errors:   0,
 				Failures: 0,
 				Skipped:  0,
-				Time:     1.5,
+				Time:     1500 * time.Millisecond,
 				Properties: map[string]string{
 					"suite_prop": "value",
 				},
@@ -62,7 +62,7 @@ func TestUnifiedTestResultSerialization(t *testing.T) {
 			Failed:   0,
 			Skipped:  0,
 			Errors:   0,
-			Duration: 1.5,
+			Duration: 1500 * time.Millisecond,
 		},
 	}
 

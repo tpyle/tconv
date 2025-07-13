@@ -87,12 +87,12 @@ func ParseGoTest(filePath string) (*models.TikiTestResult, error) {
 				testKey := packageName + "::" + event.Test
 				if test, exists := tests[testKey]; exists {
 					test.Status = models.StatusPassed
-					test.Time = event.Elapsed
+					test.Time = time.Duration(event.Elapsed * float64(time.Second))
 					summary.Passed++
 					summary.Total++
 				}
 			} else {
-				suite.Time = event.Elapsed
+				suite.Time = time.Duration(event.Elapsed * float64(time.Second))
 			}
 
 		case models.ActionFail:
@@ -100,7 +100,7 @@ func ParseGoTest(filePath string) (*models.TikiTestResult, error) {
 				testKey := packageName + "::" + event.Test
 				if test, exists := tests[testKey]; exists {
 					test.Status = models.StatusFailed
-					test.Time = event.Elapsed
+					test.Time = time.Duration(event.Elapsed * float64(time.Second))
 					test.Message = "Test failed"
 					if test.SystemOut != "" {
 						test.Details = strings.TrimSpace(test.SystemOut)
@@ -110,7 +110,7 @@ func ParseGoTest(filePath string) (*models.TikiTestResult, error) {
 					summary.Total++
 				}
 			} else {
-				suite.Time = event.Elapsed
+				suite.Time = time.Duration(event.Elapsed * float64(time.Second))
 			}
 
 		case models.ActionSkip:
@@ -118,7 +118,7 @@ func ParseGoTest(filePath string) (*models.TikiTestResult, error) {
 				testKey := packageName + "::" + event.Test
 				if test, exists := tests[testKey]; exists {
 					test.Status = models.StatusSkipped
-					test.Time = event.Elapsed
+					test.Time = time.Duration(event.Elapsed * float64(time.Second))
 					test.Message = "Test skipped"
 					if test.SystemOut != "" {
 						test.Details = strings.TrimSpace(test.SystemOut)

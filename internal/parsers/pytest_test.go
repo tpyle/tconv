@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"testing"
+	"time"
 
 	"github.com/tpyle/tconv/pkg/models"
 )
@@ -53,9 +54,9 @@ func TestParsePytest(t *testing.T) {
 		if tc.ClassName != "tests/test_math.py" {
 			t.Errorf("Expected className 'tests/test_math.py', got '%s'", tc.ClassName)
 		}
-		expectedTime := 0.001 + 0.045 + 0.001 // setup + call + teardown
+		expectedTime := time.Duration((0.001 + 0.045 + 0.001) * float64(time.Second)) // setup + call + teardown
 		if tc.Time != expectedTime {
-			t.Errorf("Expected time %f, got %f", expectedTime, tc.Time)
+			t.Errorf("Expected time %v, got %v", expectedTime, tc.Time)
 		}
 		if tc.Properties["nodeid"] != "tests/test_math.py::test_addition" {
 			t.Errorf("Expected nodeid 'tests/test_math.py::test_addition', got '%s'", tc.Properties["nodeid"])
@@ -114,8 +115,8 @@ func TestParsePytest(t *testing.T) {
 		t.Errorf("Expected skipped 1, got %d", result.Summary.Skipped)
 	}
 
-	if result.Summary.Duration != 1.234 {
-		t.Errorf("Expected duration 1.234, got %f", result.Summary.Duration)
+	if result.Summary.Duration != 1234*time.Millisecond {
+		t.Errorf("Expected duration 1.234s, got %v", result.Summary.Duration)
 	}
 }
 

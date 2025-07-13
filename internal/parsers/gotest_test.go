@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"testing"
+	"time"
 
 	"github.com/tpyle/tconv/pkg/models"
 )
@@ -49,8 +50,8 @@ func TestParseGoTest(t *testing.T) {
 		if tc.ClassName != "github.com/example/myapp" {
 			t.Errorf("Expected className 'github.com/example/myapp', got '%s'", tc.ClassName)
 		}
-		if tc.Time != 0.15 {
-			t.Errorf("Expected time 0.15, got %f", tc.Time)
+		if tc.Time != 150*time.Millisecond {
+			t.Errorf("Expected time 150ms, got %v", tc.Time)
 		}
 		expectedOutput := "=== RUN   TestAddition\n    math_test.go:10: Testing addition\n"
 		if tc.SystemOut != expectedOutput {
@@ -64,8 +65,8 @@ func TestParseGoTest(t *testing.T) {
 		if tc.Status != models.StatusFailed {
 			t.Errorf("Expected TestSubtraction to be failed, got %s", tc.Status)
 		}
-		if tc.Time != 0.2 {
-			t.Errorf("Expected time 0.2, got %f", tc.Time)
+		if tc.Time != 200*time.Millisecond {
+			t.Errorf("Expected time 200ms, got %v", tc.Time)
 		}
 		if tc.Message != "Test failed" {
 			t.Errorf("Expected message 'Test failed', got '%s'", tc.Message)
@@ -82,8 +83,8 @@ func TestParseGoTest(t *testing.T) {
 		if tc.Status != models.StatusSkipped {
 			t.Errorf("Expected TestDivision to be skipped, got %s", tc.Status)
 		}
-		if tc.Time != 0.1 {
-			t.Errorf("Expected time 0.1, got %f", tc.Time)
+		if tc.Time != 100*time.Millisecond {
+			t.Errorf("Expected time 100ms, got %v", tc.Time)
 		}
 		if tc.Message != "Test skipped" {
 			t.Errorf("Expected message 'Test skipped', got '%s'", tc.Message)

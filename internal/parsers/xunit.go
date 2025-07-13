@@ -74,7 +74,7 @@ func ParseXUnit(filePath string) (*models.TikiTestResult, error) {
 			}
 
 			if timeValue, err := strconv.ParseFloat(collection.Time, 64); err == nil {
-				suite.Time = timeValue
+				suite.Time = time.Duration(timeValue * float64(time.Second))
 			}
 
 			for _, xunitTest := range collection.Tests {
@@ -91,7 +91,7 @@ func ParseXUnit(filePath string) (*models.TikiTestResult, error) {
 				}
 
 				if timeValue, err := strconv.ParseFloat(xunitTest.Time, 64); err == nil {
-					testCase.Time = timeValue
+					testCase.Time = time.Duration(timeValue * float64(time.Second))
 				}
 
 				// Determine status and details

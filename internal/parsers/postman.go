@@ -52,7 +52,7 @@ func ParsePostman(filePath string) (*models.TikiTestResult, error) {
 		Errors:   0,
 		Failures: 0,
 		Skipped:  0,
-		Time:     float64(postmanRun.Run.Timings.Completed-postmanRun.Run.Timings.Started) / 1000.0,
+		Time:     time.Duration(float64(postmanRun.Run.Timings.Completed-postmanRun.Run.Timings.Started) * float64(time.Millisecond)),
 	}
 
 	var summary models.TestSummary
@@ -62,7 +62,7 @@ func ParsePostman(filePath string) (*models.TikiTestResult, error) {
 		testCase := models.TestCase{
 			Name:        execution.Item.Name,
 			ClassName:   "postman.request",
-			Time:        execution.Response.ResponseTime / 1000.0,
+			Time:        time.Duration(execution.Response.ResponseTime * float64(time.Millisecond)),
 			SystemOut:   execution.Response.Body,
 			Properties:  make(map[string]string),
 			Assertions:  make([]models.Assertion, 0),

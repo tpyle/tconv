@@ -66,8 +66,8 @@ type TestSuite struct {
 	// Skipped is the count of tests that were skipped
 	Skipped int `json:"skipped" yaml:"skipped" xml:"skipped,attr"`
 
-	// Time is the total execution time for this suite in seconds
-	Time float64 `json:"time" yaml:"time" xml:"time,attr"`
+	// Time is the total execution time for this suite
+	Time time.Duration `json:"time" yaml:"time" xml:"time,attr"`
 
 	// Properties contains additional metadata specific to this suite
 	Properties map[string]string `json:"properties,omitempty" yaml:"properties,omitempty" xml:"properties,omitempty"`
@@ -81,8 +81,8 @@ type TestCase struct {
 	// ClassName represents the class or module containing this test
 	ClassName string `json:"class_name,omitempty" yaml:"class_name,omitempty" xml:"class_name,attr,omitempty"`
 
-	// Time is the execution duration in seconds
-	Time float64 `json:"time" yaml:"time" xml:"time,attr"`
+	// Time is the execution duration
+	Time time.Duration `json:"time" yaml:"time" xml:"time,attr"`
 
 	// Status indicates the test outcome
 	Status TestStatus `json:"status" yaml:"status" xml:"status,attr"`
@@ -170,8 +170,8 @@ type TestSummary struct {
 	// Errors number of tests that encountered runtime errors
 	Errors int `json:"errors" yaml:"errors" xml:"errors,attr"`
 
-	// Duration is the total execution time in seconds
-	Duration float64 `json:"duration" yaml:"duration" xml:"duration,attr"`
+	// Duration is the total execution time
+	Duration time.Duration `json:"duration" yaml:"duration" xml:"duration,attr"`
 }
 
 // PassRate calculates the percentage of tests that passed.

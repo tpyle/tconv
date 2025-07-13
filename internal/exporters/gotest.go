@@ -140,14 +140,14 @@ func WriteGoTest(result *models.TikiTestResult, writer io.Writer) error {
 			}
 
 			// Update time for test completion
-			currentTime = currentTime.Add(time.Duration(test.Time * float64(time.Second)))
+			currentTime = currentTime.Add(test.Time)
 
 			if err := encoder.Encode(GoTestEvent{
 				Time:    currentTime,
 				Action:  action,
 				Package: packageName,
 				Test:    testName,
-				Elapsed: test.Time,
+				Elapsed: test.Time.Seconds(),
 			}); err != nil {
 				return fmt.Errorf("failed to write test result event: %w", err)
 			}
@@ -160,13 +160,13 @@ func WriteGoTest(result *models.TikiTestResult, writer io.Writer) error {
 		}
 
 		// Update time for package completion
-		currentTime = currentTime.Add(time.Duration(suite.Time * float64(time.Second)))
+		currentTime = currentTime.Add(suite.Time)
 
 		if err := encoder.Encode(GoTestEvent{
 			Time:    currentTime,
 			Action:  packageAction,
 			Package: packageName,
-			Elapsed: suite.Time,
+			Elapsed: suite.Time.Seconds(),
 		}); err != nil {
 			return fmt.Errorf("failed to write package result event: %w", err)
 		}

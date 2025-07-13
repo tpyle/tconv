@@ -56,7 +56,7 @@ func ParseTestNG(filePath string) (*models.TikiTestResult, error) {
 			// Calculate suite duration
 			if testngTest.DurationMs != "" {
 				if durationMs, err := strconv.ParseFloat(testngTest.DurationMs, 64); err == nil {
-					suite.Time = durationMs / 1000.0 // Convert to seconds
+					suite.Time = time.Duration((durationMs / 1000.0) * float64(time.Second)) // Convert to time.Duration
 				}
 			}
 
@@ -84,7 +84,7 @@ func ParseTestNG(filePath string) (*models.TikiTestResult, error) {
 					// Calculate test duration
 					if method.DurationMs != "" {
 						if durationMs, err := strconv.ParseFloat(method.DurationMs, 64); err == nil {
-							testCase.Time = durationMs / 1000.0 // Convert to seconds
+							testCase.Time = time.Duration((durationMs / 1000.0) * float64(time.Second)) // Convert to time.Duration
 							summary.Duration += testCase.Time
 						}
 					}

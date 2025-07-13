@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"testing"
+	"time"
 
 	"github.com/tpyle/tconv/pkg/models"
 )
@@ -49,8 +50,8 @@ func TestParseXUnit(t *testing.T) {
 		if tc.ClassName != "TestClass" {
 			t.Errorf("Expected className 'TestClass', got '%s'", tc.ClassName)
 		}
-		if tc.Time != 0.1 {
-			t.Errorf("Expected time 0.1, got %f", tc.Time)
+		if tc.Time != 100*time.Millisecond {
+			t.Errorf("Expected time 100ms, got %v", tc.Time)
 		}
 		if tc.SystemOut != "Test output from TestSuccess" {
 			t.Errorf("Expected SystemOut 'Test output from TestSuccess', got '%s'", tc.SystemOut)

@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"testing"
+	"time"
 
 	"github.com/tpyle/tconv/pkg/models"
 )
@@ -49,8 +50,8 @@ func TestParsePostman(t *testing.T) {
 		if tc.ClassName != "postman.request" {
 			t.Errorf("Expected className 'postman.request', got '%s'", tc.ClassName)
 		}
-		if tc.Time != 0.15 {
-			t.Errorf("Expected time 0.15, got %f", tc.Time)
+		if tc.Time != 150*time.Millisecond {
+			t.Errorf("Expected time 150ms, got %v", tc.Time)
 		}
 		if tc.Properties["method"] != "GET" {
 			t.Errorf("Expected method 'GET', got '%s'", tc.Properties["method"])

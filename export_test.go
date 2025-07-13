@@ -25,12 +25,12 @@ func TestExportFunctionality(t *testing.T) {
 					{
 						Name:   "TestPassed",
 						Status: models.StatusPassed,
-						Time:   1.5,
+						Time:   1500 * time.Millisecond,
 					},
 					{
 						Name:    "TestFailed",
 						Status:  models.StatusFailed,
-						Time:    0.8,
+						Time:    800 * time.Millisecond,
 						Message: "Test failed",
 						Details: "Assertion failed",
 					},
@@ -43,7 +43,7 @@ func TestExportFunctionality(t *testing.T) {
 				Errors:   0,
 				Failures: 1,
 				Skipped:  1,
-				Time:     2.3,
+				Time:     2300 * time.Millisecond,
 			},
 		},
 		Summary: models.TestSummary{
@@ -51,7 +51,7 @@ func TestExportFunctionality(t *testing.T) {
 			Passed:   1,
 			Failed:   1,
 			Skipped:  1,
-			Duration: 2.3,
+			Duration: 2300 * time.Millisecond,
 		},
 	}
 

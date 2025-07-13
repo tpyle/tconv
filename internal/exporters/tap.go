@@ -84,7 +84,7 @@ func WriteTAP(result *models.TikiTestResult, writer io.Writer) error {
 
 			// Add timing information as comment if available
 			if test.Time > 0 {
-				if _, err := fmt.Fprintf(writer, "# Duration: %.3fs\n", test.Time); err != nil {
+				if _, err := fmt.Fprintf(writer, "# Duration: %.3fs\n", test.Time.Seconds()); err != nil {
 					return fmt.Errorf("failed to write timing: %w", err)
 				}
 			}
@@ -112,7 +112,7 @@ func WriteTAP(result *models.TikiTestResult, writer io.Writer) error {
 	if _, err := fmt.Fprintf(writer, "# Errors: %d\n", result.Summary.Errors); err != nil {
 		return fmt.Errorf("failed to write summary: %w", err)
 	}
-	if _, err := fmt.Fprintf(writer, "# Duration: %.3fs\n", result.Summary.Duration); err != nil {
+	if _, err := fmt.Fprintf(writer, "# Duration: %.3fs\n", result.Summary.Duration.Seconds()); err != nil {
 		return fmt.Errorf("failed to write summary: %w", err)
 	}
 

@@ -54,7 +54,7 @@ func ParseJUnit(filePath string) (*models.TikiTestResult, error) {
 		}
 
 		if timeValue, err := strconv.ParseFloat(junitSuite.Time, 64); err == nil {
-			suite.Time = timeValue
+			suite.Time = time.Duration(timeValue * float64(time.Second))
 		}
 
 		if junitSuite.Properties != nil {
@@ -73,7 +73,7 @@ func ParseJUnit(filePath string) (*models.TikiTestResult, error) {
 			}
 
 			if timeValue, err := strconv.ParseFloat(junitCase.Time, 64); err == nil {
-				testCase.Time = timeValue
+				testCase.Time = time.Duration(timeValue * float64(time.Second))
 			}
 
 			if junitCase.Failure != nil {
