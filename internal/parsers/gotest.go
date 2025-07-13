@@ -11,6 +11,13 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
+// ParseGoTest parses Go test JSON output and converts it to tiki format.
+//
+// This parser handles the JSON output format produced by 'go test -json'.
+// It processes test events including pass/fail status, timing information,
+// and output messages to create a comprehensive test result.
+//
+// Returns a TikiTestResult with converted test data or an error if parsing fails.
 func ParseGoTest(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {

@@ -12,6 +12,13 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
+// ParsePytest parses pytest JSON reports and converts them to tiki format.
+//
+// This parser handles the JSON output format produced by pytest's JSON report plugin.
+// It processes test outcomes, timing data, failure messages, and metadata to create
+// a comprehensive test result compatible with the tiki format.
+//
+// Returns a TikiTestResult with converted test data or an error if parsing fails.
 func ParsePytest(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {

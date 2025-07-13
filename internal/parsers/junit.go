@@ -1,3 +1,18 @@
+// Package parsers provides format-specific parsing functionality for converting
+// various test result formats into the standardized tiki format.
+//
+// This package contains parsers for multiple test result formats including:
+//   - JUnit XML (ParseJUnit)
+//   - TestNG XML (ParseTestNG)
+//   - xUnit XML (ParseXUnit)
+//   - Go test JSON (ParseGoTest)
+//   - Postman collection runner JSON (ParsePostman)
+//   - pytest JSON (ParsePytest)
+//   - TAP - Test Anything Protocol (ParseTAP)
+//
+// Each parser function takes a file path and returns a tiki test result
+// or an error if parsing fails. The parsers handle format-specific
+// nuances and normalize the data into the unified tiki structure.
 package parsers
 
 import (
@@ -11,6 +26,13 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
+// ParseJUnit parses JUnit XML test results and converts them to tiki format.
+//
+// JUnit XML is widely used across Java ecosystems and many other testing
+// frameworks. This parser handles both single testsuites and collections
+// of testsuites (testsuites root element).
+//
+// Returns a TikiTestResult with converted test data or an error if parsing fails.
 func ParseJUnit(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {

@@ -21,6 +21,13 @@ var (
 	tapDiagRegex    = regexp.MustCompile(`^#\s*(.*)`)
 )
 
+// ParseTAP parses TAP (Test Anything Protocol) format and converts it to tiki format.
+//
+// TAP is a simple text-based interface between testing modules and test harnesses.
+// This parser handles TAP version declarations, test plans, test results, diagnostics,
+// and bail-out directives according to the TAP specification.
+//
+// Returns a TikiTestResult with converted test data or an error if parsing fails.
 func ParseTAP(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {

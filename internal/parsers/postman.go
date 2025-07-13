@@ -11,6 +11,13 @@ import (
 	"github.com/tpyle/tconv/pkg/models"
 )
 
+// ParsePostman parses Postman collection runner results and converts them to tiki format.
+//
+// This parser handles the JSON output from Postman/Newman collection runs.
+// It processes request executions, test assertions, response data, and timing
+// information to create test results compatible with the tiki format.
+//
+// Returns a TikiTestResult with converted test data or an error if parsing fails.
 func ParsePostman(filePath string) (*models.TikiTestResult, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
